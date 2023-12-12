@@ -17,6 +17,13 @@ program
 const inputSymbols = program.opts().symbols;
 console.log(inputSymbols);
 
+// Add an event listener to keep the program running
+process.stdin.resume(); // Keep the Node.js process running
+process.on("SIGINT", () => {
+  console.log("\nReceived Ctrl+C. Exiting...");
+  process.exit(0);
+});
+
 // if using comma-separated list of symbols
 // const symbols: string[] = inputSymbols.split(/[, ]+/).filter(Boolean);
 // console.log({ symbols });
