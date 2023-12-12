@@ -9,13 +9,23 @@ console.log(figlet.textSync("Stock Ticker"));
 
 program
   .version("1.0.0")
-  .description("description")
+  .description("Stock Ticker")
   .requiredOption("-s, --symbols <symbols...>", "Space-separated list of stock symbols")
-  // .requiredOption('-s, --symbols <symbols>', 'Comma-separated list of stock symbols')
   .parse(process.argv);
 
 const inputSymbols = program.opts().symbols;
-console.log(inputSymbols);
+
+let symbols: string[] = [];
+try {
+  if (inputSymbols && inputSymbols[0].includes(",")) {
+    symbols = inputSymbols?.[0].split(",");
+  } else {
+    symbols = inputSymbols;
+  }
+} catch (e) {
+  symbols = inputSymbols;
+}
+console.log({ symbols });
 
 // Add an event listener to keep the program running
 process.stdin.resume(); // Keep the Node.js process running
@@ -23,10 +33,6 @@ process.on("SIGINT", () => {
   console.log("\nReceived Ctrl+C. Exiting...");
   process.exit(0);
 });
-
-// if using comma-separated list of symbols
-// const symbols: string[] = inputSymbols.split(/[, ]+/).filter(Boolean);
-// console.log({ symbols });
 
 // test
 // const symbols = ["AAPL", "GOOG"];
