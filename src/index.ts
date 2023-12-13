@@ -10,7 +10,7 @@ console.log(figlet.textSync("Stock Ticker"));
 program
   .version("1.0.0")
   .description("Stock Ticker")
-  .requiredOption("-s, --symbols <symbols...>", "Space-separated list of stock symbols")
+  .requiredOption("-s, --symbols <symbols...>", "A list of stock symbols separated by commas or spaces")
   .parse(process.argv);
 
 const inputSymbols = program.opts().symbols;
