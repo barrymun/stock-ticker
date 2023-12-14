@@ -30,7 +30,7 @@ console.log({ symbols });
 
 const screen = blessed.screen({
   smartCSR: true,
-  title: "Full-Screen Commander.js Program",
+  title: "Stock Ticker",
 });
 
 // Create a Blessed box for displaying output
@@ -51,8 +51,8 @@ const outputBox = blessed.box({
   },
 });
 
-// Append the output box to the screen
-screen.append(outputBox);
+// Set the output box content
+outputBox.setContent(symbols.join(", "));
 
 // Append the output box to the screen
 screen.append(outputBox);
