@@ -2,6 +2,7 @@ import { Command } from "commander";
 import figlet from "figlet";
 
 import { updateOutputBox } from "lib/screen";
+import { setState } from "lib/state";
 
 export const initProgram = () => {
   const program = new Command();
@@ -26,7 +27,7 @@ export const initProgram = () => {
   }
   console.log({ symbols });
 
-  return program;
+  setState({ program });
 };
 
 export const setTitle = () => {

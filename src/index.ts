@@ -1,11 +1,9 @@
 import { initProgram, setTitle } from "lib/program";
 import { initScreen } from "lib/screen";
-import { setState } from "lib/state";
 
 const run = () => {
-  const program = initProgram();
-  const { screen, outputBox } = initScreen();
-  setState({ program, screen, outputBox });
+  initProgram();
+  initScreen();
   setTitle();
 };
 

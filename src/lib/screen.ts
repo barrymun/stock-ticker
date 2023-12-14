@@ -38,16 +38,12 @@ export const initScreen = () => {
   // Render the screen
   screen.render();
 
-  // Add your program logic here
-  // For example, you can listen to events, update the outputBox, etc.
-  // outputBox.setContent('Hello, World!');
-
   // Exit the program when the screen is destroyed
   screen.on("destroy", () => {
     process.exit(0);
   });
 
-  return { screen, outputBox };
+  setState({ screen, outputBox });
 };
 
 export const updateOutputBox = (content: string) => {
