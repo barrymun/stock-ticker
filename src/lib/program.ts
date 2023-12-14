@@ -1,10 +1,10 @@
 import { Command } from "commander";
 import figlet from "figlet";
 
+import { updateOutputBox } from "lib/screen";
+
 export const initProgram = () => {
   const program = new Command();
-
-  console.log(figlet.textSync("Stock Ticker"));
 
   program
     .version("1.0.0")
@@ -27,4 +27,8 @@ export const initProgram = () => {
   console.log({ symbols });
 
   return program;
+};
+
+export const setTitle = () => {
+  updateOutputBox(figlet.textSync("Stock Ticker"));
 };

@@ -1,5 +1,7 @@
 import blessed from "blessed";
 
+import { getState, setState } from "lib/state";
+
 export const initScreen = () => {
   const screen = blessed.screen({
     smartCSR: true,
@@ -46,6 +48,13 @@ export const initScreen = () => {
   });
 
   return { screen, outputBox };
+};
+
+export const updateOutputBox = (content: string) => {
+  const { screen, outputBox } = getState();
+  outputBox.setContent(content);
+  screen.render();
+  setState({ screen, outputBox });
 };
 
 // Add an event listener to keep the program running

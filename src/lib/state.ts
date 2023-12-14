@@ -5,5 +5,8 @@ let state: State | undefined;
 export const getState = () => state!;
 
 export const setState = (newState: Partial<State>) => {
-  Object.assign(state ?? {}, newState);
+  if (!state) {
+    state = {} as State;
+  }
+  Object.assign(state, newState);
 };
