@@ -1,6 +1,13 @@
 import blessed from "blessed";
 import { Command } from "commander";
 
+export interface State {
+  program: Command;
+  symbols: string[];
+  screen: blessed.Widgets.Screen;
+  outputBox: blessed.Widgets.BoxElement;
+}
+
 export interface FetchStocksJsonResponse {
   spark: {
     result: FetchStocksResponse[];
@@ -60,9 +67,10 @@ export interface FetchStocksResponse {
   }[];
 }
 
-export interface State {
-  program: Command;
-  symbols: string[];
-  screen: blessed.Widgets.Screen;
-  outputBox: blessed.Widgets.BoxElement;
+export interface FormattedStock {
+  symbol: string;
+  latestPrice: number;
+  change: number;
+  changePercent: number;
+  trend: string;
 }

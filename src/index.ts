@@ -4,6 +4,7 @@ import { initScreen, updateOutputBox } from "lib/screen";
 import { initProgram } from "lib/program";
 import { fetchStocks } from "lib/request";
 import { getState } from "lib/state";
+import { formatStocks } from "utils/helpers";
 
 const run = async () => {
   initProgram();
@@ -12,12 +13,18 @@ const run = async () => {
   const { symbols } = getState();
   const title: string = figlet.textSync("Stock Ticker");
   const stocks = await fetchStocks({ symbols });
+  const formattedStocks = formatStocks(stocks ?? []);
 
-  updateOutputBox(`
-  ${title}\n
-  ${stocks?.map((stock) => `${stock.symbol}: ${stock.response[0]?.meta.regularMarketPrice}`).join("\n")}\n
-  Press Ctrl+C to exit...
-  `);
+  updateOutputBox(
+    `${title}\n` +
+      formattedStocks
+        .map((stock) => {
+          return `${stock.symbol}: ${stock.trend} ${stock.latestPrice} ${stock.change} ${stock.changePercent}`;
+        })
+        .join("\n") +
+      "\n\n" +
+      `Press Ctrl+C to exit...`,
+  );
 };
 
 run();

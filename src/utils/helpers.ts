@@ -1,6 +1,9 @@
-import { sparkApiUrl } from "utils/config";
+import { round } from "lodash";
 
-export function generateSparkApiUrl(symbols: string[]): string {
+import { sparkApiUrl } from "utils/config";
+import { FetchStocksResponse, FormattedStock } from "utils/types";
+
+export const generateSparkApiUrl = (symbols: string[]): string => {
   // join the symbols array into a comma-separated string
   const symbolString = symbols.join(",");
 
@@ -17,4 +20,33 @@ export function generateSparkApiUrl(symbols: string[]): string {
   });
 
   return `${sparkApiUrl}?${queryParams.toString()}`;
-}
+};
+
+export const formatStocks = (stocks: FetchStocksResponse[]): FormattedStock[] => {
+  return stocks.map((stock) => {
+    const { symbol, response } = stock;
+
+    // get the latest price
+    const latestPrice = response[0].meta.regularMarketPrice;
+
+    // get the previous close
+    const previousClose = response[0].meta.chartPreviousClose;
+
+    // get the change in price
+    const change = round(latestPrice - previousClose, 2);
+
+    // get the change percentage
+    const changePercent = round((change / previousClose) * 100, 2);
+
+    // get the price trend
+    const trend = change > 0 ? "▲" : "▼";
+
+    return {
+      symbol,
+      latestPrice,
+      change,
+      changePercent,
+      trend,
+    };
+  });
+};
