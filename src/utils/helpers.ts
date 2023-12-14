@@ -36,7 +36,7 @@ export const formatStocks = (stocks: FetchStocksResponse[]): FormattedStock[] =>
     const change = round(latestPrice - previousClose, 2);
 
     // get the change percentage
-    const changePercent = round((change / previousClose) * 100, 2);
+    const changePercent = round((change / previousClose) * 100, 4);
 
     // get the price trend
     const trend = change > 0 ? "▲" : "▼";

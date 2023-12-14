@@ -1,30 +1,12 @@
-import figlet from "figlet";
-
-import { initScreen, updateOutputBox } from "lib/screen";
+import { initScreen } from "lib/screen";
 import { initProgram } from "lib/program";
-import { fetchStocks } from "lib/request";
-import { getState } from "lib/state";
-import { formatStocks } from "utils/helpers";
+import { scheduleNextRequest } from "lib/request";
 
 const run = async () => {
   initProgram();
   initScreen();
 
-  const { symbols } = getState();
-  const title: string = figlet.textSync("Stock Ticker");
-  const stocks = await fetchStocks({ symbols });
-  const formattedStocks = formatStocks(stocks ?? []);
-
-  updateOutputBox(
-    `${title}\n` +
-      formattedStocks
-        .map((stock) => {
-          return `${stock.symbol}: ${stock.trend} ${stock.latestPrice} ${stock.change} ${stock.changePercent}`;
-        })
-        .join("\n") +
-      "\n\n" +
-      `Press Ctrl+C to exit...`,
-  );
+  scheduleNextRequest();
 };
 
 run();
