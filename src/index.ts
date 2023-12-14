@@ -1,10 +1,23 @@
-import { initProgram, setTitle } from "lib/program";
-import { initScreen } from "lib/screen";
+import figlet from "figlet";
 
-const run = () => {
+import { initScreen, updateOutputBox } from "lib/screen";
+import { initProgram } from "lib/program";
+import { fetchStocks } from "lib/request";
+import { getState } from "lib/state";
+
+const run = async () => {
   initProgram();
   initScreen();
-  setTitle();
+
+  const { symbols } = getState();
+  const title: string = figlet.textSync("Stock Ticker");
+  const stocks = await fetchStocks({ symbols });
+
+  updateOutputBox(`
+  ${title}\n
+  ${stocks?.map((stock) => `${stock.symbol}: ${stock.response[0]?.meta.regularMarketPrice}`).join("\n")}\n
+  Press Ctrl+C to exit...
+  `);
 };
 
 run();
@@ -14,5 +27,5 @@ run();
 
 // test
 // const symbols = ["AAPL", "GOOG"];
-// const stocks = await fetchStocks({ symbols });
+//
 // console.log({ stocks });

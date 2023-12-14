@@ -1,7 +1,5 @@
 import { Command } from "commander";
-import figlet from "figlet";
 
-import { updateOutputBox } from "lib/screen";
 import { setState } from "lib/state";
 
 export const initProgram = () => {
@@ -25,11 +23,6 @@ export const initProgram = () => {
   } catch (e) {
     symbols = inputSymbols;
   }
-  console.log({ symbols });
 
-  setState({ program });
-};
-
-export const setTitle = () => {
-  updateOutputBox(figlet.textSync("Stock Ticker"));
+  setState({ program, symbols });
 };
