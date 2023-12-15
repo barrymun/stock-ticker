@@ -1,7 +1,10 @@
+import fs from "fs";
 import { round } from "lodash";
 
 import { sparkApiUrl } from "utils/config";
 import { FetchStocksResponse, FormattedStock } from "utils/types";
+
+const filePath: string = "output.json";
 
 export const generateSparkApiUrl = (symbols: string[]): string => {
   // join the symbols array into a comma-separated string
@@ -49,4 +52,23 @@ export const formatStocks = (stocks: FetchStocksResponse[]): FormattedStock[] =>
       trend,
     };
   });
+};
+
+export const saveDataToFile = (data: FetchStocksResponse) => {
+  try {
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    console.log("Data saved to", filePath);
+  } catch (error) {
+    console.error("Error writing to file:", error);
+  }
+};
+
+export const readDataFromFile = () => {
+  try {
+    const data = fs.readFileSync(filePath, "utf-8");
+    const parsedData = JSON.parse(data);
+    console.log(parsedData);
+  } catch (error) {
+    console.error("Error reading from file:", error);
+  }
 };
