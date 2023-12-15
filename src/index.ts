@@ -1,20 +1,15 @@
 import { initScreen } from "lib/screen";
 import { initProgram } from "lib/program";
-import { scheduleNextRequest } from "lib/request";
+import { fetchStocks, scheduleNextRequest } from "lib/request";
+import { refreshLayout } from "lib/layout";
 
 const run = async () => {
   initProgram();
   initScreen();
 
+  const stocks = await fetchStocks(true);
+  refreshLayout(stocks);
   scheduleNextRequest();
 };
 
 run();
-
-// Set the output box content
-// outputBox.setContent(symbols.join(", "));
-
-// test
-// const symbols = ["AAPL", "GOOG"];
-//
-// console.log({ stocks });
