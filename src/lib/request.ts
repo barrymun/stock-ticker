@@ -12,8 +12,6 @@ export const fetchStocks = async (useSavedData?: boolean): Promise<FetchStocksRe
     }
   }
 
-  // throw new Error("Not implemented");
-
   const { symbols } = getState();
   const url = generateSparkApiUrl(symbols);
   try {
