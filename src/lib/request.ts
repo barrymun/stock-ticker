@@ -4,8 +4,9 @@ import { sparkApiRequestHeaders } from "utils/config";
 import { generateSparkApiUrl, readDataFromFile, saveDataToFile } from "utils/helpers";
 import { FetchStocksJsonResponse, FetchStocksResponse } from "utils/types";
 
-export const fetchStocks = async (useSavedData?: boolean): Promise<FetchStocksResponse[] | null> => {
-  if (useSavedData) {
+export const fetchStocks = async (): Promise<FetchStocksResponse[] | null> => {
+  const { useSavedDataMode } = getState();
+  if (useSavedDataMode) {
     const data = readDataFromFile();
     if (data) {
       return data;
@@ -23,7 +24,7 @@ export const fetchStocks = async (useSavedData?: boolean): Promise<FetchStocksRe
       method: "GET",
     });
     const data = ((await res.json()) as unknown as FetchStocksJsonResponse).spark.result;
-    if (useSavedData) {
+    if (useSavedDataMode) {
       saveDataToFile(data);
     }
     return data;

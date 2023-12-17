@@ -2,6 +2,7 @@ import blessed from "blessed";
 import { Command } from "commander";
 
 export interface State {
+  useSavedDataMode: boolean;
   program: Command;
   symbols: string[];
   screen: blessed.Widgets.Screen;
