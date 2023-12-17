@@ -4,14 +4,19 @@ import { fetchStocks, scheduleNextRequest } from "lib/request";
 import { refreshLayout } from "lib/layout";
 import { setState } from "lib/state";
 
-const init = () => {
+/**
+ * Initialize the program state
+ * Ensure that is is called at the beginning of the program
+ * @returns {void}
+ */
+const initState = (): void => {
   setState({ useSavedDataMode: true });
+  initProgram();
+  initScreen();
 };
 
 const run = async () => {
-  init();
-  initProgram();
-  initScreen();
+  initState();
 
   const stocks = await fetchStocks();
   refreshLayout(stocks);
