@@ -37,12 +37,12 @@ const createStockBorder = (stock: FormattedStock) => {
 };
 
 export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
-  const { screen } = getState();
+  const { screen, outputBox } = getState();
 
   // reset the top offset
   topOffset = 0;
 
-  screen.append(
+  outputBox.append(
     blessed.box({
       width: "100%-4",
       height: 20, // Adjust the height as needed
@@ -63,12 +63,12 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
   const formattedStocks: FormattedStock[] = formatStocks(stocks ?? []);
   formattedStocks.forEach((stock) => {
     const stockBorder = createStockBorder(stock);
-    screen.append(stockBorder);
+    outputBox.append(stockBorder);
   });
 
   topOffset += 6;
 
-  screen.append(
+  outputBox.append(
     blessed.box({
       width: "100%-4",
       height: 5, // Adjust the height as needed
@@ -86,5 +86,5 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
 
   screen.render();
 
-  setState({ screen });
+  setState({ screen, outputBox });
 };

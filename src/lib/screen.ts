@@ -1,6 +1,6 @@
 import blessed from "blessed";
 
-import { getState, setState } from "lib/state";
+import { setState } from "lib/state";
 
 export const initScreen = () => {
   const screen = blessed.screen({
@@ -14,7 +14,6 @@ export const initScreen = () => {
     left: "center",
     width: "100%",
     height: "100%",
-    content: "Press Ctrl+C to exit...",
     tags: true,
     border: {
       type: "line",
@@ -24,6 +23,16 @@ export const initScreen = () => {
         fg: "white",
       },
     },
+    scrollable: true,
+    alwaysScroll: true,
+    scrollbar: {
+      ch: " ",
+      // inverse: true,
+    },
+    keys: true,
+    vi: true,
+    mouse: true,
+    content: "",
   });
 
   // Append the output box to the screen
@@ -46,12 +55,12 @@ export const initScreen = () => {
   setState({ screen, outputBox });
 };
 
-export const updateOutputBox = (content: string) => {
-  const { screen, outputBox } = getState();
-  outputBox.setContent(content);
-  screen.render();
-  setState({ screen, outputBox });
-};
+// export const updateOutputBox = (content: string) => {
+//   const { screen, outputBox } = getState();
+//   outputBox.setContent(content);
+//   screen.render();
+//   setState({ screen, outputBox });
+// };
 
 // Add an event listener to keep the program running
 // process.stdin.resume(); // Keep the Node.js process running
