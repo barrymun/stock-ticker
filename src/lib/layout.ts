@@ -7,23 +7,17 @@ import { FetchStocksResponse, FormattedStock } from "utils/types";
 
 const title: string = figlet.textSync("Stock Ticker");
 const exitMessage: string = "Press Ctrl+C to exit...";
+const width: string = "100%-2";
 
 let topOffset: number = 0;
 
 // Function to create a table-like border around a stock entry
 const createStockBorder = (stock: FormattedStock) => {
   const box = blessed.box({
-    width: "100%-4",
-    height: 5, // Adjust the height as needed
+    width,
+    height: 3, // Adjust the height as needed
     top: topOffset,
     border: "line",
-    // content: `
-    //   Symbol: ${stock.symbol}
-    //   Trend: ${stock.trend}
-    //   Latest Price: ${stock.latestPrice}
-    //   Change: ${stock.change}
-    //   Change Percent: ${stock.changePercent}
-    // `,
     content: `${stock.symbol}: ${stock.trend} ${stock.latestPrice} ${stock.change} ${stock.changePercent}`,
     tags: true,
     style: {
@@ -32,7 +26,7 @@ const createStockBorder = (stock: FormattedStock) => {
       },
     },
   });
-  topOffset += 6;
+  topOffset += 3;
   return box;
 };
 
@@ -44,8 +38,8 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
 
   outputBox.append(
     blessed.box({
-      width: "100%-4",
-      height: 20, // Adjust the height as needed
+      width,
+      height: 8, // Adjust the height as needed
       top: topOffset,
       border: "line",
       content: title,
@@ -58,7 +52,7 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
     }),
   );
 
-  topOffset += 22;
+  topOffset += 8;
 
   const formattedStocks: FormattedStock[] = formatStocks(stocks ?? []);
   formattedStocks.forEach((stock) => {
@@ -70,8 +64,8 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
 
   outputBox.append(
     blessed.box({
-      width: "100%-4",
-      height: 5, // Adjust the height as needed
+      width,
+      height: 3, // Adjust the height as needed
       top: topOffset,
       border: "line",
       content: exitMessage,
