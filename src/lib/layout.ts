@@ -8,6 +8,10 @@ import { FetchStocksResponse, FormattedStock } from "utils/types";
 const title: string = figlet.textSync("Stock Ticker");
 const exitMessage: string = "Press Ctrl+C to exit...";
 const width: string = "100%-2";
+const titleHeight: number = 8;
+const stockBorderHeight: number = 3;
+const spacerHeight: number = 3;
+const exitMessageHeight: number = 3;
 
 let topOffset: number = 0;
 
@@ -15,7 +19,7 @@ let topOffset: number = 0;
 const createStockBorder = (stock: FormattedStock) => {
   const box = blessed.box({
     width,
-    height: 3,
+    height: stockBorderHeight,
     top: topOffset,
     border: "line",
     content: `${stock.symbol}: ${stock.trend} ${stock.latestPrice} ${stock.change} ${stock.changePercent}`,
@@ -26,7 +30,7 @@ const createStockBorder = (stock: FormattedStock) => {
       },
     },
   });
-  topOffset += 3;
+  topOffset += stockBorderHeight;
   return box;
 };
 
@@ -50,7 +54,7 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
   outputBox.append(
     blessed.box({
       width,
-      height: 8,
+      height: titleHeight,
       top: topOffset,
       border: "line",
       content: title,
@@ -62,8 +66,7 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
       },
     }),
   );
-
-  topOffset += 8;
+  topOffset += titleHeight;
 
   const formattedStocks: FormattedStock[] = formatStocks(stocks ?? []);
   formattedStocks.forEach((stock) => {
@@ -74,7 +77,7 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
   // add a spacer box to the bottom of the output box (so that the last element is visible when scrolling)
   outputBox.append(
     blessed.box({
-      height: 3,
+      height: spacerHeight,
       top: topOffset,
     }),
   );
@@ -84,7 +87,7 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
   screen.append(
     blessed.box({
       width,
-      height: 3,
+      height: exitMessageHeight,
       bottom: 1,
       left: 1,
       border: "line",
