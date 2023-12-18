@@ -27,7 +27,6 @@ export const initScreen = () => {
     alwaysScroll: true,
     scrollbar: {
       ch: " ",
-      // inverse: true,
     },
     keys: true,
     vi: true,
@@ -54,13 +53,6 @@ export const initScreen = () => {
 
   setState({ screen, outputBox });
 };
-
-// export const updateOutputBox = (content: string) => {
-//   const { screen, outputBox } = getState();
-//   outputBox.setContent(content);
-//   screen.render();
-//   setState({ screen, outputBox });
-// };
 
 // Add an event listener to keep the program running
 // process.stdin.resume(); // Keep the Node.js process running

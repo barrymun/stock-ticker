@@ -15,7 +15,7 @@ let topOffset: number = 0;
 const createStockBorder = (stock: FormattedStock) => {
   const box = blessed.box({
     width,
-    height: 3, // Adjust the height as needed
+    height: 3,
     top: topOffset,
     border: "line",
     content: `${stock.symbol}: ${stock.trend} ${stock.latestPrice} ${stock.change} ${stock.changePercent}`,
@@ -50,7 +50,7 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
   outputBox.append(
     blessed.box({
       width,
-      height: 8, // Adjust the height as needed
+      height: 8,
       top: topOffset,
       border: "line",
       content: title,
@@ -71,13 +71,14 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
     outputBox.append(stockBorder);
   });
 
-  topOffset += 6;
-
-  outputBox.append(
+  // add a box for the exit message
+  // attach it to the bottom of the screen as opposed to the outputBox element
+  screen.append(
     blessed.box({
       width,
-      height: 3, // Adjust the height as needed
-      top: topOffset,
+      height: 3,
+      bottom: 1,
+      left: 1,
       border: "line",
       content: exitMessage,
       tags: true,

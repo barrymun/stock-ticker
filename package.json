@@ -28,7 +28,8 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "yarn eslint src/**/*.ts && yarn eslint tests/**/*.ts",
-    "test": "bun test"
+    "test": "bun test",
+    "sample-cmd": "bun run src/index.ts -s AAPL GOOG AFRM VOO AMZN NVDA SNOW TSLA AMD META MSFT"
   },
   "dependencies": {
     "blessed": "^0.1.81",
