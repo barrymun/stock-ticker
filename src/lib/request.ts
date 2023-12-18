@@ -16,7 +16,6 @@ export const fetchStocks = async (): Promise<FetchStocksResponse[] | null> => {
   const { symbols } = getState();
   const url = generateSparkApiUrl(symbols);
   try {
-    console.log("=====MAKING_REQUEST=====");
     const res = await fetch(url, {
       headers: sparkApiRequestHeaders,
       referrerPolicy: "strict-origin-when-cross-origin",

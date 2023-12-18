@@ -1,5 +1,5 @@
 import fs from "fs";
-import { round } from "lodash";
+import { orderBy, round } from "lodash";
 
 import { sparkApiUrl } from "utils/config";
 import { FetchStocksResponse, FormattedStock } from "utils/types";
@@ -26,8 +26,17 @@ export const generateSparkApiUrl = (symbols: string[]): string => {
   return `${sparkApiUrl}?${queryParams.toString()}`;
 };
 
+/**
+ * sort the stocks by symbol but do not mutate the original array
+ * @param stocks
+ * @returns
+ */
+const sortStocks = (stocks: FetchStocksResponse[]): FetchStocksResponse[] => {
+  return orderBy(stocks, [(stock) => stock.symbol.toUpperCase()], ["asc"]);
+};
+
 export const formatStocks = (stocks: FetchStocksResponse[]): FormattedStock[] => {
-  return stocks.map((stock) => {
+  return sortStocks(stocks).map((stock) => {
     const { symbol, response } = stock;
 
     // get the latest price
