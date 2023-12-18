@@ -71,6 +71,14 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
     outputBox.append(stockBorder);
   });
 
+  // add a spacer box to the bottom of the output box (so that the last element is visible when scrolling)
+  outputBox.append(
+    blessed.box({
+      height: 3,
+      top: topOffset,
+    }),
+  );
+
   // add a box for the exit message
   // attach it to the bottom of the screen as opposed to the outputBox element
   screen.append(
