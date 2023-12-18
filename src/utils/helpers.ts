@@ -20,6 +20,7 @@ export const generateSparkApiUrl = (symbols: string[]): string => {
     includePrePost: "false",
     corsDomain: "finance.yahoo.com",
     ".tsrc": "finance",
+    t: Math.random().toString(), // add a random query param to prevent caching
   });
 
   return `${sparkApiUrl}?${queryParams.toString()}`;

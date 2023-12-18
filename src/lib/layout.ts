@@ -30,7 +30,18 @@ const createStockBorder = (stock: FormattedStock) => {
   return box;
 };
 
+const clearOutputBox = () => {
+  const { screen, outputBox } = getState();
+  outputBox.children.forEach((child) => {
+    outputBox.remove(child);
+  });
+  screen.render();
+  setState({ screen, outputBox });
+};
+
 export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
+  clearOutputBox();
+
   const { screen, outputBox } = getState();
 
   // reset the top offset

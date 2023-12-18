@@ -22,6 +22,7 @@ export const fetchStocks = async (): Promise<FetchStocksResponse[] | null> => {
       referrerPolicy: "strict-origin-when-cross-origin",
       body: null,
       method: "GET",
+      cache: "no-cache",
     });
     const data = ((await res.json()) as unknown as FetchStocksJsonResponse).spark.result;
     if (useSavedDataMode) {

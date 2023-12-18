@@ -10,7 +10,7 @@ import { setState } from "lib/state";
  * @returns {void}
  */
 const initState = (): void => {
-  setState({ useSavedDataMode: true });
+  setState({ useSavedDataMode: false });
   initProgram();
   initScreen();
 };
