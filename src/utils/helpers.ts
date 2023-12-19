@@ -52,14 +52,16 @@ export const formatStocks = (stocks: FetchStocksResponse[]): FormattedStock[] =>
     const changePercent = round((change / previousClose) * 100, 4);
 
     // get the price trend
-    const trend = change > 0 ? "▲" : "▼";
+    const trendDirection = change > 0 ? "positive" : "negative";
+    const trendIcon = change > 0 ? "▲" : "▼";
 
     return {
       symbol,
       latestPrice,
       change,
       changePercent,
-      trend,
+      trendDirection,
+      trendIcon,
     };
   });
 };

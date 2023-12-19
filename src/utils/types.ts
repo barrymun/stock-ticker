@@ -73,5 +73,6 @@ export interface FormattedStock {
   latestPrice: number;
   change: number;
   changePercent: number;
-  trend: string;
+  trendDirection: "positive" | "negative";
+  trendIcon: "▲" | "▼";
 }

@@ -22,7 +22,9 @@ const createStockBorder = (stock: FormattedStock) => {
     height: stockBorderHeight,
     top: topOffset,
     border: "line",
-    content: `${stock.symbol}: ${stock.trend} ${stock.latestPrice} ${stock.change} ${stock.changePercent}`,
+    content: `${stock.symbol}: ${stock.trendDirection === "positive" ? "{green-fg}" : "{red-fg}"}${
+      stock.trendIcon
+    } {/}${stock.latestPrice} ${stock.change} ${stock.changePercent}`,
     tags: true,
     style: {
       border: {
