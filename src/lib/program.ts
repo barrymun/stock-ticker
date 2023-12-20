@@ -1,13 +1,14 @@
 import { Command } from "commander";
 
 import { setState } from "lib/state";
+import { figletTitle } from "utils/config";
 
 export const initProgram = () => {
   const program = new Command();
 
   program
     .version("1.0.0")
-    .description("Stock Ticker")
+    .description(figletTitle)
     .requiredOption("-s, --symbols <symbols...>", "A list of stock symbols separated by commas or spaces")
     .parse(process.argv);
 

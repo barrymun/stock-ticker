@@ -1,11 +1,10 @@
 import blessed from "blessed";
-import figlet from "figlet";
 
 import { getState, setState } from "lib/state";
+import { figletTitle } from "utils/config";
 import { formatStocks } from "utils/helpers";
 import { FetchStocksResponse, FormattedStock } from "utils/types";
 
-const title: string = figlet.textSync("Stock Ticker");
 const exitMessage: string = "Press Ctrl+C to exit...";
 const width: string = "100%-2";
 const titleHeight: number = 8;
@@ -59,7 +58,7 @@ export const refreshLayout = (stocks: FetchStocksResponse[] | null) => {
       height: titleHeight,
       top: topOffset,
       border: "line",
-      content: title,
+      content: figletTitle,
       tags: true,
       style: {
         border: {

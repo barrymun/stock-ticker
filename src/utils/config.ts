@@ -1,3 +1,5 @@
+import figlet from "figlet";
+
 /* eslint-disable max-len */
 export const sparkApiUrl: string = "https://query1.finance.yahoo.com/v7/finance/spark";
 export const sparkApiRequestHeaders: Record<string, string> = {
@@ -16,3 +18,4 @@ export const sparkApiRequestHeaders: Record<string, string> = {
   cookie:
     "A3=d=AQABBMEh2mQCEF-Bdf-pEVYarsyKHX-P0ZUFEgEBAQFz22TkZAAAAAAA_eMAAA&S=AQAAAh07HnJ95bBRdTbLrayts9U; A1=d=AQABBMEh2mQCEF-Bdf-pEVYarsyKHX-P0ZUFEgEBAQFz22TkZAAAAAAA_eMAAA&S=AQAAAh07HnJ95bBRdTbLrayts9U; A1S=d=AQABBMEh2mQCEF-Bdf-pEVYarsyKHX-P0ZUFEgEBAQFz22TkZAAAAAAA_eMAAA&S=AQAAAh07HnJ95bBRdTbLrayts9U",
 };
+export const figletTitle: string = figlet.textSync("Stock Ticker");
