@@ -14,16 +14,13 @@
     "composite": true,
     "strict": true,
     "downlevelIteration": true,
-    "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "types": [
       "bun-types",
     ],
-    "paths": {
-      "*": ["./src/*"],
-    },
+    "baseUrl": "./src",
   },
   "include": ["src"],
 }

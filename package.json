@@ -41,7 +41,7 @@
     "lint": "bun eslint src/**/*.ts && bun eslint tests/**/*.ts",
     "test": "bun test",
     "sample-cmd": "bun run src/index.ts -s AAPL GOOG AFRM VOO AMZN NVDA SNOW TSLA AMD META MSFT",
-    "build": "rm -rf dist && tsc --build"
+    "build": "rm -rf dist && tsc"
   },
   "dependencies": {
     "blessed": "^0.1.81",
