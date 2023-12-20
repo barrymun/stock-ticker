@@ -1,5 +1,3 @@
-#! /usr/bin/env node
-
 import { initScreen } from "lib/screen";
 import { initProgram } from "lib/program";
 import { fetchStocks, scheduleNextRequest } from "lib/request";
