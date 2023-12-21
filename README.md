@@ -6,6 +6,8 @@ The Stock Ticker Console Program is a versatile and user-friendly command-line t
 
 To install:
 
+(It is recommended to install npm and Node.js with [NVM](https://github.com/nvm-sh/nvm))
+
 ```bash
 npm install @barrymun/stock-ticker -g
 ```
