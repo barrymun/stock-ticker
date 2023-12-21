@@ -7,7 +7,7 @@
   "module": "src/index.ts",
   "type": "module",
   "bin": {
-    "sticker": "dist/src/index.js"
+    "sticker": "dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -41,7 +41,7 @@
     "lint": "bun eslint src/**/*.ts && bun eslint tests/**/*.ts",
     "test": "bun test",
     "sample-cmd": "bun run src/index.ts -s AAPL GOOG AFRM VOO AMZN NVDA SNOW TSLA AMD META MSFT",
-    "build": "rm -rf dist && tsc"
+    "build": "rm -rf dist && tsc && node post-build.js"
   },
   "dependencies": {
     "blessed": "^0.1.81",

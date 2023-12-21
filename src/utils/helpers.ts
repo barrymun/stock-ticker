@@ -1,5 +1,5 @@
 import fs from "fs";
-import { orderBy, round } from "lodash";
+import _ from "lodash";
 
 import { sparkApiUrl } from "utils/config";
 import { FetchStocksResponse, FormattedStock } from "utils/types";
@@ -32,7 +32,7 @@ export const generateSparkApiUrl = (symbols: string[]): string => {
  * @returns
  */
 const sortStocks = (stocks: FetchStocksResponse[]): FetchStocksResponse[] => {
-  return orderBy(stocks, [(stock) => stock.symbol.toUpperCase()], ["asc"]);
+  return _.orderBy(stocks, [(stock) => stock.symbol.toUpperCase()], ["asc"]);
 };
 
 export const formatStocks = (stocks: FetchStocksResponse[]): FormattedStock[] => {
@@ -46,10 +46,10 @@ export const formatStocks = (stocks: FetchStocksResponse[]): FormattedStock[] =>
     const previousClose = response[0].meta.chartPreviousClose;
 
     // get the change in price
-    const change = round(latestPrice - previousClose, 2);
+    const change = _.round(latestPrice - previousClose, 2);
 
     // get the change percentage
-    const changePercent = round((change / previousClose) * 100, 4);
+    const changePercent = _.round((change / previousClose) * 100, 4);
 
     // get the price trend
     const trendDirection = change > 0 ? "positive" : "negative";
