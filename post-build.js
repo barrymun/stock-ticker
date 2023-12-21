@@ -53,7 +53,7 @@ function addShebang() {
     }
   
     // Add the shebang line at the beginning of the file
-    const updatedContents = `#!/usr/bin/env node\n\n${data}`;
+    const updatedContents = `#!/usr/bin/env node\n${data}`;
   
     // Write the updated contents back to the file
     fs.writeFile(indexPath, updatedContents, (err) => {
