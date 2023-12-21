@@ -1,8 +1,12 @@
 import fs from "fs";
-import path from "path";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
 const directoryPath = './dist'; // Replace with your directory path
 const searchPattern = /from\s+['"]([^'"]+)['"]/g;
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const indexPath = path.join(__dirname, 'dist', 'index.js');
 
 function getRelativePath(filePath, importPath) {
   const fileDir = path.dirname(filePath);
@@ -41,4 +45,26 @@ function processDirectory(dirPath) {
   }
 }
 
+function addShebang() {
+  fs.readFile(indexPath, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+  
+    // Add the shebang line at the beginning of the file
+    const updatedContents = `#!/usr/bin/env node\n\n${data}`;
+  
+    // Write the updated contents back to the file
+    fs.writeFile(indexPath, updatedContents, (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log('Shebang line added to index.js');
+    });
+  });
+}
+
 processDirectory(directoryPath);
+addShebang();

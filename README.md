@@ -7,12 +7,6 @@ The Stock Ticker Console Program is a versatile and user-friendly command-line t
 To install:
 
 ```bash
-bun install @barrymun/stock-ticker -g
-```
-
-or
-
-```bash
 npm install @barrymun/stock-ticker -g
 ```
 
