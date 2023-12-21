@@ -11,7 +11,6 @@ function getRelativePath(filePath, importPath) {
   if (relativePath.startsWith('../')) {
     relativePath = relativePath.slice(3);
   }
-  console.log(fileDir, importDir, relativePath);
   return relativePath.startsWith('.') ? `${relativePath.replace(importDir, '')}` : `./`;
 }
 
