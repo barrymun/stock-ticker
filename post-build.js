@@ -22,7 +22,7 @@ function replaceImportsInFile(filePath) {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const updatedContents = fileContents.replace(searchPattern, (match, importPath) => {
     if (importPath.startsWith('./') || importPath.startsWith('../')) {
-      return match; // Import path already contains relative prefix
+      return match; // import path already contains relative prefix
     } else if (importPath.includes('/')) {
       const relativePath = getRelativePath(filePath, importPath);
       return `from "${relativePath}${importPath}.js"`;
@@ -52,10 +52,10 @@ function addShebang() {
       return;
     }
   
-    // Add the shebang line at the beginning of the file
+    // add the shebang line at the beginning of the file
     const updatedContents = `#!/usr/bin/env node\n${data}`;
   
-    // Write the updated contents back to the file
+    // write the updated contents back to the file
     fs.writeFile(indexPath, updatedContents, (err) => {
       if (err) {
         console.error(err);

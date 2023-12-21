@@ -2,7 +2,7 @@
   "name": "@barrymun/stock-ticker",
   "description": "Command-line tool which provides real-time financial information.",
   "license": "MIT",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "barrymun",
   "module": "src/index.ts",
   "type": "module",
@@ -41,7 +41,7 @@
     "lint": "bun eslint src/**/*.ts && bun eslint tests/**/*.ts",
     "test": "bun test",
     "sample-cmd": "bun run src/index.ts -s AAPL GOOG AFRM VOO AMZN NVDA SNOW TSLA AMD META MSFT",
-    "build": "rm -rf dist && tsc && node post-build.js"
+    "build": "rm -rf dist && tsc && bun post-build.js"
   },
   "dependencies": {
     "blessed": "^0.1.81",

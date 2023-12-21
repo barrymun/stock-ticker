@@ -23,3 +23,9 @@ Help
 ```bash
 sticker -h
 ```
+
+## TODO
+
+- [ ] Support for futures and ETFs
+- [ ] Add a loading bar to show when the next request will be made
+- [ ] Allow the user to specify if the stocks displayed should be listed in alphabetical order or in the order they were specified in the `sticker` command
