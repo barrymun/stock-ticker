@@ -2,7 +2,7 @@
   "name": "@barrymun/stock-ticker",
   "description": "Command-line tool which provides real-time financial information.",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "barrymun",
   "module": "src/index.ts",
   "type": "module",
