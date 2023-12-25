@@ -1,10 +1,8 @@
 import fs from "fs";
 import _ from "lodash";
 
-import { sparkApiUrl } from "utils/config";
+import { sparkApiUrl, testDataFilePath } from "utils/config";
 import { FetchStocksResponse, FormattedStock } from "utils/types";
-
-const filePath: string = "test-data/output.json";
 
 export const generateSparkApiUrl = (symbols: string[]): string => {
   // join the symbols array into a comma-separated string
@@ -68,7 +66,7 @@ export const formatStocks = (stocks: FetchStocksResponse[]): FormattedStock[] =>
 
 export const saveDataToFile = (data: FetchStocksResponse[]) => {
   try {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    fs.writeFileSync(testDataFilePath, JSON.stringify(data, null, 2));
   } catch (error) {
     // no-op
   }
@@ -76,7 +74,7 @@ export const saveDataToFile = (data: FetchStocksResponse[]) => {
 
 export const readDataFromFile = (): FetchStocksResponse[] | null => {
   try {
-    const data = fs.readFileSync(filePath, "utf-8");
+    const data = fs.readFileSync(testDataFilePath, "utf-8");
     const parsedData = JSON.parse(data);
     return parsedData as FetchStocksResponse[];
   } catch (error) {
