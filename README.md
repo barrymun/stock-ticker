@@ -4,7 +4,13 @@ The Stock Ticker Console Program is a versatile and user-friendly command-line t
 
 [![NPM](https://img.shields.io/npm/v/@barrymun/stock-ticker.svg)](https://www.npmjs.com/package/@barrymun/stock-ticker)
 
-To install:
+### Screenshots:
+
+![screenshot-1](screenshots/1.png)
+
+![screenshot-2](screenshots/2.png)
+
+### To install:
 
 (It is recommended to install npm and Node.js with [NVM](https://github.com/nvm-sh/nvm))
 
@@ -24,8 +30,10 @@ Help
 sticker -h
 ```
 
-## TODO
+### TODO
 
+- [x] Add app screenshots
+- [ ] Handle terminal resizing
 - [ ] Support for futures and ETFs
 - [ ] Add a loading bar to show when the next request will be made
 - [ ] Allow the user to specify if the stocks displayed should be listed in alphabetical order or in the order they were specified in the `sticker` command
