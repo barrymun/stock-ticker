@@ -1,21 +1,12 @@
 import { describe, it, expect } from "bun:test";
+
 import { fetchStocks } from "lib/request";
-
-import { setState } from "lib/state";
 import { readDataFromFile } from "utils/helpers";
-
-const symbols: string[] = ["AAPL", "TSLA", "AMZN", "GOOG", "MSFT", "FB", "NVDA", "PYPL", "ADBE", "NFLX"];
 
 describe("FetchStocksResponse Interface", () => {
   it("should have the correct keys and data types", async () => {
     let jsonData = readDataFromFile();
     if (!jsonData) {
-      // if there is no saved data, then we need to fetch it from the API
-      // and save it to the file system
-      // ensure to set the useSavedDataMode flag to true, and the symbols
-      // as these are required for the fetchStocks function to work
-      setState({ useSavedDataMode: true });
-      setState({ symbols });
       jsonData = await fetchStocks();
       if (!jsonData) {
         throw new Error("Failed to fetch data from the API");

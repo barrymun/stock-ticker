@@ -24,7 +24,7 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "bun eslint src/**/*.ts && bun eslint tests/**/*.ts",
-    "test": "bun test",
+    "test": "bun test --preload ./tests/setup.ts",
     "build": "rm -rf dist && tsc --project ./tsconfig.build.json && bun post-build.js",
     "sample-cmd": "bun run src/index.ts -s AAPL GOOG AFRM VOO AMZN NVDA SNOW TSLA AMD META MSFT",
     "sample-cmd-2": "bun dist/index.js -s AAPL GOOG AFRM VOO AMZN NVDA SNOW TSLA AMD META MSFT"
